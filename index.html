@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Glowque </title>
+
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side - Form -->
+        <div class="form-section">
+            <div class="header">
+                <nav class="nav-links">
+                    <a href="#" class="nav-link active">Create</a>
+                    <a href="#" class="nav-link">Log in</a>
+                </nav>
+            </div>
+
+            <div class="logo">
+                <div class="logo-icon"><img src="Logo/post.png" alt="Logo" style="width:150px; height:auto;"></div>
+            </div>
+
+            <div class="form-content">
+                <h1 class="form-title">Create your account</h1>
+                <p class="form-subtitle">Glowque – Expanding Your Reach, Growing Your Sales.</p>
+
+                <button class="google-btn">
+                    <div class="google-icon"></div>
+                    Continue with Google
+                </button>
+
+                <div class="divider">OR</div>
+
+                <form id="signup-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="firstName">First name</label>
+                            <input type="text" id="firstName" class="form-input" placeholder="Ali" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="lastName">Last name</label>
+                            <input type="text" id="lastName" class="form-input" placeholder="Mamedgasanov" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="businessName">Business name</label>
+                        <input type="text" id="businessName" class="form-input" placeholder="Baked Design" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="alimamedgasanov3@gmail.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="password">Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" class="form-input" placeholder="31810180Aa_" required>
+                            <button type="button" class="password-toggle" onclick="togglePassword()">👁</button>
+                        </div>
+                        <div class="password-requirements">
+                            <div class="requirement" id="req-length">
+                                <span class="requirement-icon">✓</span>
+                                10 characters
+                            </div>
+                            <div class="requirement" id="req-uppercase">
+                                <span class="requirement-icon">✓</span>
+                                Uppercase
+                            </div>
+                            <div class="requirement" id="req-lowercase">
+                                <span class="requirement-icon">✓</span>
+                                Lowercase
+                            </div>
+                            <div class="requirement" id="req-number">
+                                <span class="requirement-icon">✓</span>
+                                Number
+                            </div>
+                            <div class="requirement" id="req-special">
+                                <span class="requirement-icon">✓</span>
+                                Special character
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit">Create account</button>
+                </form>
+
+                <p class="terms-text">
+                    By creating account, you agree to castle's <a href="#">terms and policy</a> ↗
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+        </div>
+
+        <!-- Right Side - Features -->
+        <div class="features-section">
+            <div class="bitcoin-animation">GL</div>
+            <div class="dollar-animation">Gl</div>
+            <div class="connection-line"></div>
+
+            <h2 class="features-title">Welcome to Your New Experience</h2>
+            <h3 class="features-subtitle">Sign up now to access powerful tools.</h3>
+
+            <ul class="features-list">
+                <li class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-content">
+                        <h3> Start Your Journey</h3>
+                        <p>Sign up now to enjoy a seamless and secure experience tailored just for you.</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-content">
+                        <h3>Be Part of Something Great</h3>
+                        <p>Register today and take the first step toward endless opportunities.</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🔗</div>
+                    <div class="feature-content">
+                        <h3>Create Your Account</h3>
+                        <p> Fill in your details Now to get started — it’s quick and easy.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Password visibility toggle
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.password-toggle');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁';
+            }
+        }
+
+        // Password validation
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const requirements = {
+                'req-length': password.length >= 10,
+                'req-uppercase': /[A-Z]/.test(password),
+                'req-lowercase': /[a-z]/.test(password),
+                'req-number': /\d/.test(password),
+                'req-special': /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+            };
+
+            Object.keys(requirements).forEach(reqId => {
+                const element = document.getElementById(reqId);
+                if (requirements[reqId]) {
+                    element.classList.add('met');
+                } else {
+                    element.classList.remove('met');
+                }
+            });
+
+            // Enable/disable submit button
+            const allMet = Object.values(requirements).every(req => req);
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = !allMet;
+        }
+
+        // Form validation
+        function validateForm() {
+            const form = document.getElementById('signup-form');
+            const inputs = form.querySelectorAll('input[required]');
+            let allValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    allValid = false;
+                    input.style.borderColor = '#dc3545';
+                } else {
+                    input.style.borderColor = '#28a745';
+                }
+            });
+
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = !allValid;
+            
+            return allValid;
+        }
+
+        // Event listeners
+        document.getElementById('password').addEventListener('input', validatePassword);
+
+        document.querySelectorAll('input[required]').forEach(input => {
+            input.addEventListener('input', validateForm);
+            input.addEventListener('blur', validateForm);
+        });
+
+        // Form submission
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateForm()) {
+                // Simulate form submission
+                const submitBtn = document.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Creating account...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    submitBtn.textContent = 'Account created! ✓';
+                    submitBtn.style.background = '#28a745';
+                    
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 2000);
+                }, 1500);
+            }
+        });
+
+        // Google sign-in simulation
+        document.querySelector('.google-btn').addEventListener('click', function() {
+            const btn = this;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<div class="google-icon"></div>Connecting...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 2000);
+        });
+
+        // Initialize form validation on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            validatePassword();
+            validateForm();
+        });
+
+        // Add smooth animations for better UX
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature items for animation
+        document.querySelectorAll('.feature-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
