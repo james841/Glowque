@@ -595,3 +595,19 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (max-width: 768px) {
+  .submit {
+    width: 80%;      
+    font-size: 14px;  
+  }
+}
+
+
+@media (max-width: 480px) {
+  .submit {
+    width: 90%;       
+    font-size: 13px;  
+    padding: 8px 15px;
+  }
+}
