@@ -340,7 +340,7 @@ body {
 /* Right Side - Features */
 .features-section {
   background: linear-gradient(135deg, var(--light-orange) 0%, #fff5f2 100%);
-  padding: clamp(10px, 5vw, 30px);
+  padding: clamp(15px, 5vw, 30px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -390,11 +390,11 @@ body {
 .connection-line {
   position: absolute;
   top: 28%;
-  left: 25%;
-  right: 25%;
-  height: 2px;
+  left: 26%;
+  right: 26%;
+  height: 4px;
   background: linear-gradient(
-    100deg,
+    90deg,
     transparent,
     var(--primary-orange),
     transparent
