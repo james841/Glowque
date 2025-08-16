@@ -389,12 +389,12 @@ body {
 
 .connection-line {
   position: absolute;
-  top: 30%;
+  top: 28%;
   left: 25%;
   right: 25%;
   height: 2px;
   background: linear-gradient(
-    90deg,
+    100deg,
     transparent,
     var(--primary-orange),
     transparent
