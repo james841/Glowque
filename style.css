@@ -292,13 +292,17 @@ body {
 
 .submit:hover {
   background: var(--primary-orange);
-  transform: translateY(-5px);
-  box-shadow: 0 15px 25px rgba(255, 107, 53, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 9px 15px rgba(255, 107, 53, 0.12);
+  filter: brightness(1.03);
+  transition: background 0.9s, box-shadow 0.2s, transform 0.5s;
 }
 
 .submit:disabled {
   background: var(--medium-gray);
+  color: var(--text-light);
   cursor: not-allowed;
+  opacity: 0.6;
   transform: none;
   box-shadow: none;
 }
