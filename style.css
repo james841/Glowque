@@ -28,8 +28,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;   /* ✅ Remove extra spacing */
-  margin: 0;   /* ✅ Ensure no default margin from browsers */
+  padding: 0;   
   line-height: 1.6;
 }
 
@@ -113,21 +112,22 @@ body {
 }
 
 .submit {
-  background-color: rgb(255, 123, 0); 
-  color: white; 
-  padding: 10px 20px; 
-  border: none; 
-  border-radius: 10px; 
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--text-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
   font-size: 16px;
-  cursor: pointer; 
-  width: 420px; 
-  display: block; 
-  margin: 20px auto; 
-  text-align: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 24px 0;
 }
 
 .submit:hover {
-  background-color: rgb(255, 217, 0); 
+  background-color: rgb(255, 174, 0); 
+  transition: 1s;
 }
 
 .google-btn {
@@ -290,13 +290,13 @@ body {
   margin: 24px 0;
 }
 
-.submit-btn:hover {
+.submit:hover {
   background: var(--primary-orange);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(255, 107, 53, 0.3);
 }
 
-.submit-btn:disabled {
+.submit:disabled {
   background: var(--medium-gray);
   cursor: not-allowed;
   transform: none;
@@ -574,7 +574,7 @@ body {
   }
 }
 
-/* Focus and accessibility improvements */
+
 .form-input:focus,
 .google-btn:focus,
 .submit-btn:focus {
