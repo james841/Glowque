@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Glowque </title>
 
-   <link rel="stylesheet" href="style.css">
-</head>
+   <link rel="stylesheet" href="style/style.css">
+</head>1
 <body>
     <div class="container">
         <!-- Left Side - Form -->
@@ -268,6 +268,11 @@
             item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
             observer.observe(item);
         });
+
+        function toggleMenu() {
+    document.querySelector('.nav-links').classList.toggle('show');
+    document.querySelector('.nav-actions').classList.toggle('show');
+}
     </script>
 </body>
 </html>
