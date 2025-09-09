@@ -3,315 +3,392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NONOY WEAR - Fashion Store</title>
-    <link rel="stylesheet" href="style/Landing.css">
+    <title>Glowque - Global Trends Fashion</title>
+   <link rel="stylesheet" href="style/Landing.css"/>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    
-    <div class="loading" id="loading">
-        <div class="spinner"></div>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        Save 10% off - Download App with code - FREE10% →
     </div>
+    <nav>
+    <div class="brand"><img src="Logo/Twitter.png" alt="Logo" style="width:140px; height:auto;"></div>
 
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="ProductView.html">Products</a></li>
+      <li><a href="#listings">Listings</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <div class="store-icons">
+        <i class="fab fa-google-play"></i>
+        <i class="fab fa-apple"></i>
+      </div>
+    </ul>
 
-    <header class="header">
-        <nav class="nav">
-            <div class="logo">
-                <img src="Logo/post.png" alt="Logo" style="width:150px; height:auto;">
-            </div>
-            <ul class="nav-links">
-                <li><a href="#new-arrival">New Arrival</a></li>
-                <li><a href="#tops">Tops</a></li>
-                <li><a href="#bottoms">Bottoms</a></li>
-                <li><a href="#accessories">Accessories</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-            <div class="nav-actions">
-                <div class="cart-icon">
-                    🛒
-                    <span class="cart-count">Bid</span>
-                </div>
-                <button class="login-btn">Login</button>
-                <button class="mobile-menu-toggle">☰</button>
-            </div>
-        </nav>
-    </header>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero-section">
+        <div class="hero-slider" id="heroSlider">
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+            <div class="hero-slide"></div>
+        </div>
+        
         <div class="hero-content">
-            <div class="hero-badge">*New Arrival*</div>
-            <h1 class="hero-title">FIZ-R200 Series</h1>
-            <p class="hero-text">Step into a fashion cosmos from the north! Get beyond! The limited WORLD! Experience the seamless integration of cutting-edge functional and stylish design. Discover which you'll never have seen. Reality through your ultimate outfits comes true so Future.</p>
+            <p class="hero-subtitle">Curated Fashion.</p>
+            <h1 class="hero-title">Global Trends.</h1>
+            <p class="hero-description">One Destination.</p>
+            <button class="explore-btn">Explore Product</button>
+        </div>
+
+        <div class="hero-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
         </div>
     </section>
 
-    <!-- New Arrivals Section -->
-    <section class="new-arrivals section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">New Arrival</h2>
-                <a href="#" class="catalog-link">Catalogue ↗</a>
-            </div>
+    <!-- Free Delivery Banner -->
+    <div class="delivery-banner">
+        <div class="delivery-text">
+            ★ Free deliveries on all products ★ Free deliveries on all products ★ Free deliveries on all products ★ Free deliveries on all products
+        </div>
+    </div>
 
-            <!-- Main Product Grid -->
-            <div class="product-grid">
-                <div class="product-card large">
-                    <div class="product-image"></div>
+    <!-- Trending Products -->
+    <section class="products-section">
+        <h2 class="section-title">Trending Products</h2>
+        <p class="section-subtitle">Today's hottest picks.</p>
+        
+        <div class="products-container">
+            <button class="nav-btn prev" onclick="slideProducts('trending', -1)">‹</button>
+            <div class="products-slider" id="trendingSlider">
+                <div class="product-card">
+                    <div class="product-image" style="background: url('/images/sleek15.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
                     <div class="product-info">
-                        <div class="product-name">Fiz-R200G</div>
-                        <div class="product-price">$224</div>
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Exclusive Home-Made Dress Wears for all kinds of eve...</p>
+                        <div class="product-price">
+                            <span class="current-price">$30.53</span>
+                            <span class="old-price">$44.34</span>
+                        </div>
                     </div>
                 </div>
+
                 <div class="product-card">
-                    <div class="product-image"></div>
+                    <div class="product-image" style="background: url('/images/sleek16.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
                     <div class="product-info">
-                        <div class="product-name">Fiz-R200O</div>
-                        <div class="product-price">$200</div>
-                    </div>
-                    <div class="sold-badge">SOLD</div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image"></div>
-                    <div class="product-info">
-                        <div class="product-name">Fiz-R200J</div>
-                        <div class="product-price">$70</div>
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Exclusive Home-Made Dress Wears for all kinds of eve...</p>
+                        <div class="product-price">
+                            <span class="current-price">$20.53</span>
+                            <span class="old-price">$24.34</span>
+                        </div>
                     </div>
                 </div>
+
                 <div class="product-card">
-                    <div class="product-image"></div>
+                    <div class="product-image" style="background: url('/images/sleek17.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
                     <div class="product-info">
-                        <div class="product-name">Fiz-R200A</div>
-                        <div class="product-price">$123</div>
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Exclusive Home-Made Wears for all kinds o...</p>
+                        <div class="product-price">
+                            <span class="current-price">$20.53</span>
+                            <span class="old-price">$24.34</span>
+                        </div>
                     </div>
                 </div>
+
                 <div class="product-card">
-                    <div class="product-image"></div>
+                    <div class="product-image" style="background: url('/images/sleek15.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
                     <div class="product-info">
-                        <div class="product-name">Fiz-R200M</div>
-                        <div class="product-price">$140</div>
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Premium Collection Dress Wears for all kinds of eve...</p>
+                        <div class="product-price">
+                            <span class="current-price">$35.99</span>
+                            <span class="old-price">$49.99</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                 <div class="product-card">
+                    <div class="product-image" style="background: url('/images/sleek15.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
+                    <div class="product-info">
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Premium Collection Dress Wears for all kinds of eve...</p>
+                        <div class="product-price">
+                            <span class="current-price">$35.99</span>
+                            <span class="old-price">$49.99</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: url('/images/sleek17.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
+                    <div class="product-info">
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Elegant Evening Dress Wears for all kinds of eve...</p>
+                        <div class="product-price">
+                            <span class="current-price">$28.75</span>
+                            <span class="old-price">$39.99</span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <button class="nav-btn next" onclick="slideProducts('trending', 1)">›</button>
         </div>
     </section>
 
-    <!-- Collection Banners -->
-    <section class="collection-banners section">
-        <div class="container">
-            <div class="banner-grid">
-                <div class="collection-banner banner-mx150">
-                    <div class="banner-content">
-                        <h2 class="banner-title">MX-150</h2>
+    <!-- Cheap Products -->
+    <section class="products-section">
+        <h2 class="section-title">Cheap Products</h2>
+        <p class="section-subtitle">Today's hottest picks.</p>
+        
+        <div class="products-container">
+            <button class="nav-btn prev" onclick="slideProducts('cheap', -1)">‹</button>
+            <div class="products-slider" id="cheapSlider">
+                <div class="product-card">
+                    <div class="product-image" style="background: url('/images/sleek15.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
+                    <div class="product-info">
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Exclusive Home-Made Dress Wears for all kinds of eve...</p>
+                        <div class="product-price">
+                            <span class="current-price">$30.53</span>
+                            <span class="old-price">$44.34</span>
+                        </div>
                     </div>
                 </div>
-                <div class="collection-banner banner-revo125">
-                    <div class="banner-content">
-                        <h2 class="banner-title">Revo-125</h2>
-                    </div>
-                </div>
-                <div class="collection-banner banner-astrea">
-                    <div class="banner-content">
-                        <h2 class="banner-title">Astrea Legend 500cc</h2>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Bottom Products -->
-            <div class="bottom-products">
-                <div class="bottom-product">
-                    <div class="bottom-product-image"></div>
-                    <div class="bottom-product-info">
-                        <div class="bottom-product-name">Varjo-250</div>
-                        <div class="bottom-product-price">$200</div>
-                    </div>
-                    <div class="sold-badge">SOLD</div>
-                </div>
-                <div class="bottom-product">
-                    <div class="bottom-product-image"></div>
-                    <div class="bottom-product-info">
-                        <div class="bottom-product-name">NMAX</div>
-                        <div class="bottom-product-price">$50</div>
+                <div class="product-card">
+                    <div class="product-image" style="background: url('/images/sleek16.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
+                    <div class="product-info">
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Exclusive Home-Made Dress Wears for all kinds of eve...</p>
+                        <div class="product-price">
+                            <span class="current-price">$20.53</span>
+                            <span class="old-price">$24.34</span>
+                        </div>
                     </div>
                 </div>
-                <div class="bottom-product">
-                    <div class="bottom-product-image"></div>
-                    <div class="bottom-product-info">
-                        <div class="bottom-product-name">Pulsar</div>
-                        <div class="bottom-product-price">$1203</div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: url('/images/sleek17.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
+                    <div class="product-info">
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Exclusive Home-Made Wears for all kinds o...</p>
+                        <div class="product-price">
+                            <span class="current-price">$20.53</span>
+                            <span class="old-price">$24.34</span>
+                        </div>
                     </div>
                 </div>
-                <div class="bottom-product">
-                    <div class="bottom-product-image"></div>
-                    <div class="bottom-product-info">
-                        <div class="bottom-product-name">Fiz-R200M</div>
-                        <div class="bottom-product-price">$302</div>
+
+                 <div class="product-card">
+                    <div class="product-image" style="background: url('/images/sleek17.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
+                    <div class="product-info">
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Exclusive Home-Made Wears for all kinds o...</p>
+                        <div class="product-price">
+                            <span class="current-price">$20.53</span>
+                            <span class="old-price">$24.34</span>
+                        </div>
                     </div>
-                    <div class="sold-badge">SOLD</div>
+                </div>
+
+                 <div class="product-card">
+                    <div class="product-image" style="background: url('/images/sleek17.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
+                    <div class="product-info">
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Exclusive Home-Made Wears for all kinds o...</p>
+                        <div class="product-price">
+                            <span class="current-price">$20.53</span>
+                            <span class="old-price">$24.34</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: url('/images/sleek16.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
+                    <div class="product-info">
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Budget Friendly Dress Wears for all kinds of eve...</p>
+                        <div class="product-price">
+                            <span class="current-price">$15.99</span>
+                            <span class="old-price">$22.99</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image" style="background: url('/images/sleek16.png'); width: 100%; height: 200px; background-size: cover; background-position: center; position: relative; top: 7px; left: 5px;"></div>
+                    <div class="product-info">
+                        <p class="product-brand">Exclusive Wears</p>
+                        <p class="product-name">Affordable Collection Dress Wears for all kinds of eve...</p>
+                        <div class="product-price">
+                            <span class="current-price">$18.50</span>
+                            <span class="old-price">$26.75</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <button class="nav-btn next" onclick="slideProducts('cheap', 1)">›</button>
         </div>
+        
     </section>
+
+    <button class="animated-button">
+  <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+    ></path>
+  </svg>
+  <span class="text">Modern Button</span>
+  <span class="circle"></span>
+  <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+    ></path>
+  </svg>
+</button>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Products</h3>
-                    <ul>
-                        <li><a href="#">New Arrival</a></li>
-                        <li><a href="#">Tops</a></li>
-                        <li><a href="#">Bottoms</a></li>
-                        <li><a href="#">Accessories</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Collections</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Size Guide</a></li>
-                        <li><a href="#">Returns</a></li>
-                        <li><a href="#">Exchange</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Information</h3>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Careers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    <ul>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Pinterest</a></li>
-                    </ul>
-                </div>
+        <div class="footer-content">
+            <div class="footer-brand">Glowque.</div>
+            <div class="social-icons">
+                <a href="#" class="social-icon">T</a>
+                <a href="#" class="social-icon">F</a>
+                <a href="#" class="social-icon">X</a>
+                <a href="#" class="social-icon">@</a>
+                <a href="#" class="social-icon">W</a>
+                <a href="#" class="social-icon">Y</a>
             </div>
-
-            <div class="newsletter-section">
-                <h3 class="newsletter-title">Newsletter +20% OFF</h3>
-                <p class="newsletter-text">Get 20% off your first order with Email subscription and stay up to date!</p>
-                <form class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Enter your email" required>
-                    <button type="submit" class="newsletter-btn">Subscribe</button>
-                </form>
-            </div>
-
-            <div class="footer-bottom">
-                <p>© 2024 NONOY WEAR. All rights reserved.</p>
-            </div>
+            <p class="footer-copyright">© Glowque 2024-2030. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Loading Screen
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loading').classList.add('hidden');
-            }, 1500);
-        });
+        // Mobile menu functionality
+        const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+    const allLinks = document.querySelectorAll(".nav-links li a");
 
-        // Lazy Loading Animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    // Toggle menu
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      hamburger.classList.toggle("active");
+    });
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+    // Active link change
+    allLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        allLinks.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
+        // Close menu after selecting link (mobile UX)
+        navLinks.classList.remove("open");
+        hamburger.classList.remove("active");
+      });
+    });
 
-        // Observe sections for lazy loading
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                observer.observe(section);
-            });
 
-            // Simulate product image loading
-            const productImages = document.querySelectorAll('.product-image, .bottom-product-image');
-            productImages.forEach((img, index) => {
-                setTimeout(() => {
-                    const colors = [
-                        'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                        'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-                        'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-                        'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-                        'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-                        'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                        'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-                        'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-                        'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
-                    ];
-                    
-                    img.style.background = colors[index % colors.length];
-                    img.innerHTML = '';
-                }, index * 150);
-            });
-        });
+        // Product slider functionality
+        let trendingCurrentSlide = 0;
+        let cheapCurrentSlide = 0;
+        let slidesToShow = getSlidesToShow();
 
-        // Newsletter form submission
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('.newsletter-input').value;
+        function getSlidesToShow() {
+            const width = window.innerWidth;
+            if (width <= 480) return 1;
+            if (width <= 768) return 1;
+            if (width <= 1024) return 2;
+            return 3;
+        }
+
+        function updateButtonStates(section) {
+            const currentSlide = section === 'trending' ? trendingCurrentSlide : cheapCurrentSlide;
+            const slider = document.getElementById(section + 'Slider');
+            const cards = slider.querySelectorAll('.product-card');
+            const maxSlides = Math.max(0, cards.length - slidesToShow);
             
-            if (email) {
-                alert('Thank you for subscribing! Check your email for the 20% discount code.');
-                this.querySelector('.newsletter-input').value = '';
+            const prevBtn = document.getElementById(section + 'Prev');
+            const nextBtn = document.getElementById(section + 'Next');
+            
+            prevBtn.disabled = currentSlide <= 0;
+            nextBtn.disabled = currentSlide >= maxSlides;
+        }
+
+        function slideProducts(section, direction) {
+            const slider = document.getElementById(section + 'Slider');
+            const cards = slider.querySelectorAll('.product-card');
+            const maxSlides = Math.max(0, cards.length - slidesToShow);
+            const cardWidth = cards[0] ? cards[0].offsetWidth : 200;
+            const gap = 20;
+            
+            if (section === 'trending') {
+                trendingCurrentSlide = Math.max(0, Math.min(maxSlides, trendingCurrentSlide + direction));
+                slider.style.transform = `translateX(-${trendingCurrentSlide * (cardWidth + gap)}px)`;
+            } else {
+                cheapCurrentSlide = Math.max(0, Math.min(maxSlides, cheapCurrentSlide + direction));
+                slider.style.transform = `translateX(-${cheapCurrentSlide * (cardWidth + gap)}px)`;
             }
-        });
+            
+            updateButtonStates(section);
+        }
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
+        // Hero dots animation
+        let currentDot = 0;
+        const dots = document.querySelectorAll('.dot');
+
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentDot);
+            });
+            currentDot = (currentDot + 1) % dots.length;
+        }
+
+        // Update dots every 3 seconds to match the hero slider
+        setInterval(updateDots, 3000);
+
+        // Handle window resize
+        function handleResize() {
+            const newSlidesToShow = getSlidesToShow();
+            
+            if (newSlidesToShow !== slidesToShow) {
+                slidesToShow = newSlidesToShow;
                 
-                if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+                // Reset sliders and update button states
+                trendingCurrentSlide = 0;
+                cheapCurrentSlide = 0;
+                
+                document.getElementById('trendingSlider').style.transform = 'translateX(0)';
+                document.getElementById('cheapSlider').style.transform = 'translateX(0)';
+                
+                updateButtonStates('trending');
+                updateButtonStates('cheap');
+            }
+        }
 
-        // Product card interactions
-        document.querySelectorAll('.product-card, .bottom-product').forEach(card => {
-            card.addEventListener('click', function() {
-                const productName = this.querySelector('.product-name, .bottom-product-name').textContent;
-                console.log(`Clicked on: ${productName}`);
-                // Add product detail view logic here
-            });
+        // Initialize
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('load', function() {
+            updateButtonStates('trending');
+            updateButtonStates('cheap');
         });
-
-        // Collection banner interactions
-        document.querySelectorAll('.collection-banner').forEach(banner => {
-            banner.addEventListener('click', function() {
-                const collectionName = this.querySelector('.banner-title').textContent;
-                console.log(`Clicked on collection: ${collectionName}`);
-                // Add collection view logic here
-            });
-        });
+        
+        handleResize();
     </script>
 </body>
 </html>
