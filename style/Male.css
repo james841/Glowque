@@ -146,10 +146,10 @@
     /* HERO SECTION */
     .hero {
       height: 100vh;
-      background: url('../images/sleek13.png') no-repeat  center/cover;
+      background: url('../images/sleek18.png') no-repeat  center/cover;
       background-size: cover;
       background-attachment: fixed;
-      background-position: top center;
+      
       display: flex;
       align-items: center;
       justify-content: center;
