@@ -80,7 +80,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="submit">Create account</button>
+                   <button type="submit" class="submit-btn">Create account</button>
                 </form>
 
                 <p class="terms-text">
@@ -133,143 +133,168 @@
 
     <script>
         // Password visibility toggle
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleBtn = document.querySelector('.password-toggle');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleBtn.textContent = '🙈';
-            } else {
-                passwordInput.type = 'password';
-                toggleBtn.textContent = '👁';
-            }
+       function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const toggleBtn = document.querySelector('.password-toggle');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleBtn.textContent = '🙈';
+    } else {
+        passwordInput.type = 'password';
+        toggleBtn.textContent = '👁';
+    }
+}
+
+// Password validation
+function validatePassword() {
+    const password = document.getElementById('password').value;
+    const requirements = {
+        'req-length': password.length >= 10,
+        'req-uppercase': /[A-Z]/.test(password),
+        'req-lowercase': /[a-z]/.test(password),
+        'req-number': /\d/.test(password),
+        'req-special': /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+    };
+
+    Object.keys(requirements).forEach(reqId => {
+        const element = document.getElementById(reqId);
+        if (requirements[reqId]) {
+            element.classList.add('met');
+        } else {
+            element.classList.remove('met');
         }
+    });
 
-        // Password validation
-        function validatePassword() {
-            const password = document.getElementById('password').value;
-            const requirements = {
-                'req-length': password.length >= 10,
-                'req-uppercase': /[A-Z]/.test(password),
-                'req-lowercase': /[a-z]/.test(password),
-                'req-number': /\d/.test(password),
-                'req-special': /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
-            };
+    // Enable/disable submit button
+    const allMet = Object.values(requirements).every(req => req);
+    const submitBtn = document.querySelector('.submit-btn');
+    submitBtn.disabled = !allMet;
+}
 
-            Object.keys(requirements).forEach(reqId => {
-                const element = document.getElementById(reqId);
-                if (requirements[reqId]) {
-                    element.classList.add('met');
-                } else {
-                    element.classList.remove('met');
-                }
-            });
+// Form validation
+function validateForm() {
+    const form = document.getElementById('signup-form');
+    const inputs = form.querySelectorAll('input[required]');
+    let allValid = true;
 
-            // Enable/disable submit button
-            const allMet = Object.values(requirements).every(req => req);
-            const submitBtn = document.querySelector('.submit-btn');
-            submitBtn.disabled = !allMet;
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            allValid = false;
+            input.style.borderColor = '#dc3545';
+        } else {
+            input.style.borderColor = '#28a745';
         }
+    });
 
-        // Form validation
-        function validateForm() {
-            const form = document.getElementById('signup-form');
-            const inputs = form.querySelectorAll('input[required]');
-            let allValid = true;
+    const submitBtn = document.querySelector('.submit-btn');
+    submitBtn.disabled = !allValid;
+    
+    return allValid;
+}
 
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    allValid = false;
-                    input.style.borderColor = '#dc3545';
-                } else {
-                    input.style.borderColor = '#28a745';
-                }
-            });
+// Navigation function
+function navigateToPage(url) {
+    // Option 1: Navigate to same tab
+    window.location.href = url;
+    
+    // Option 2: Open in new tab (uncomment if preferred)
+    // window.open(url, '_blank');
+}
 
-            const submitBtn = document.querySelector('.submit-btn');
-            submitBtn.disabled = !allValid;
+// Event listeners
+document.getElementById('password').addEventListener('input', validatePassword);
+
+document.querySelectorAll('input[required]').forEach(input => {
+    input.addEventListener('input', validateForm);
+    input.addEventListener('blur', validateForm);
+});
+
+// Form submission with navigation
+document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (validateForm()) {
+        // Simulate form submission
+        const submitBtn = document.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        
+        submitBtn.textContent = 'Creating account...';
+        submitBtn.disabled = true;
+        
+        setTimeout(() => {
+            submitBtn.textContent = 'Account created! ✓';
+            submitBtn.style.background = '#28a745';
             
-            return allValid;
-        }
-
-        // Event listeners
-        document.getElementById('password').addEventListener('input', validatePassword);
-
-        document.querySelectorAll('input[required]').forEach(input => {
-            input.addEventListener('input', validateForm);
-            input.addEventListener('blur', validateForm);
-        });
-
-        // Form submission
-        document.getElementById('signup-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm()) {
-                // Simulate form submission
-                const submitBtn = document.querySelector('.submit-btn');
-                const originalText = submitBtn.textContent;
-                
-                submitBtn.textContent = 'Creating account...';
-                submitBtn.disabled = true;
-                
-                setTimeout(() => {
-                    submitBtn.textContent = 'Account created! ✓';
-                    submitBtn.style.background = '#28a745';
-                    
-                    setTimeout(() => {
-                        submitBtn.textContent = originalText;
-                        submitBtn.style.background = '';
-                        submitBtn.disabled = false;
-                    }, 2000);
-                }, 1500);
-            }
-        });
-
-        // Google sign-in simulation
-        document.querySelector('.google-btn').addEventListener('click', function() {
-            const btn = this;
-            const originalText = btn.innerHTML;
-            
-            btn.innerHTML = '<div class="google-icon"></div>Connecting...';
-            btn.disabled = true;
-            
+            // Navigate after successful account creation
             setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }, 2000);
-        });
+                // Replace 'dashboard.html' with your desired page
+                navigateToPage('Landing.html');
+                
+                // Alternative navigation options:
+                // navigateToPage('welcome.html');
+                // navigateToPage('profile.html');
+                // navigateToPage('/app/dashboard');
+                // navigateToPage('https://example.com/dashboard');
+            }, 1000); // Navigate after 1 second of showing success message
+            
+        }, 1500);
+    }
+});
 
-        // Initialize form validation on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            validatePassword();
-            validateForm();
-        });
+// Google sign-in simulation with navigation
+document.querySelector('.google-btn').addEventListener('click', function() {
+    const btn = this;
+    const originalText = btn.innerHTML;
+    
+    btn.innerHTML = '<div class="google-icon"></div>Connecting...';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+        // Simulate successful Google sign-in
+        btn.innerHTML = '<div class="google-icon"></div>Connected! ✓';
+        btn.style.background = '#28a745';
+        
+        // Navigate after successful Google sign-in
 
-        // Add smooth animations for better UX
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        setTimeout(() => {
+            // Replace 'dashboard.html' with your desired page
+            navigateToPage('Landing.html');
+        }, 1000);
+        
+    }, 2000);
+});
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+// Initialize form validation on page load
+document.addEventListener('DOMContentLoaded', function() {
+    validatePassword();
+    validateForm();
+});
 
-        // Observe feature items for animation
-        document.querySelectorAll('.feature-item').forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-            observer.observe(item);
-        });
+// Add smooth animations for better UX
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
 
-        function toggleMenu() {
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe feature items for animation
+document.querySelectorAll('.feature-item').forEach((item, index) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+    observer.observe(item);
+});
+
+function toggleMenu() {
     document.querySelector('.nav-links').classList.toggle('show');
     document.querySelector('.nav-actions').classList.toggle('show');
 }

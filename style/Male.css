@@ -149,7 +149,7 @@
       background: url('../images/sleek18.png') no-repeat  center/cover;
       background-size: cover;
       background-attachment: fixed;
-      
+      background-position: top center;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -443,7 +443,7 @@
 
       @media (max-width: 768px) {
         .products-grid {
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(2, 1fr);
         }
 
         .category-card {
