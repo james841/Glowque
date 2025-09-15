@@ -12,28 +12,23 @@
     <div class="top-banner">
         Save 10% off - Download App with code - FREE10% →
     </div>
-    <nav>
-    <div class="brand"><img src="Logo/Twitter.png" alt="Logo" style="width:140px; height:auto;"></div>
+      <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">flowque.</a>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a href="AboutUs.html" class="nav-link primary">Home</a></li>
+        <li class="nav-item"><a href="ProductView.html" class="nav-link">Products</a></li>
+        <li class="nav-item"><a href="WorkWithUs.html" class="nav-link">Work With Us</a></li>
+        <li class="nav-item"><a href="Policies.html" class="nav-link">Policies</a></li>
+      </ul>
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home" class="active">Home</a></li>
-      <li><a href="ProductView.html">Products</a></li>
-      <li><a href="#listings">Listings</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <div class="store-icons">
-        <i class="fab fa-google-play"></i>
-        <i class="fab fa-apple"></i>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
       </div>
-    </ul>
-
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
     </div>
   </nav>
+
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -368,28 +363,28 @@
     </footer>
 
     <script>
-        // Mobile menu functionality
         const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("navLinks");
-    const allLinks = document.querySelectorAll(".nav-links li a");
+    const navMenu = document.getElementById("navMenu");
 
-    // Toggle menu
     hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
       hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+      document.body.style.overflow = navMenu.classList.contains("active") ? "hidden" : "visible";
     });
 
-    // Active link change
-    allLinks.forEach(link => {
+    // Close menu on nav link click
+    document.querySelectorAll(".nav-link").forEach(link => {
       link.addEventListener("click", () => {
-        allLinks.forEach(l => l.classList.remove("active"));
-        link.classList.add("active");
-        // Close menu after selecting link (mobile UX)
-        navLinks.classList.remove("open");
         hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+        document.body.style.overflow = "visible";
       });
     });
 
+    // Navbar scroll effect
+    window.addEventListener("scroll", () => {
+      document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 50);
+    });
 
         // Product slider functionality
         let trendingCurrentSlide = 0;
