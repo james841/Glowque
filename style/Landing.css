@@ -233,13 +233,14 @@ body {
   transform: translateY(-50%);
   color: white;
   z-index: 10;
-  max-width: clamp(300px, 60vw, 600px);
+  max-width: clamp(350px, 100vw, 800px);
 }
 
 .hero-subtitle {
-  font-size: clamp(14px, 3vw, 18px);
+  font-size: clamp(30px, 50vw, 70px);
   margin-bottom: clamp(8px, 2vw, 10px);
   font-weight: normal;
+
 }
 
 .hero-title {
@@ -446,8 +447,7 @@ body {
 
 .nav-btn {
   position: absolute;
-  top: 50%;
-  right: -34vh;
+
   transform: translateY(-50%);
   background-color: black;
   color: white;
@@ -470,11 +470,13 @@ body {
 }
 
 .nav-btn.prev {
-  left: clamp(-15px, -3vw, -1px);
+  left: clamp(38px, -3vw, -1px);
+  margin-top: 170px;
 }
 
 .nav-btn.next {
-  right: clamp(-15px, -3vw, -1px);
+  right: clamp(38px, -3vw, -1px);
+  margin-top: -170px;
 }
 
 /* Animated Button - Enhanced Responsiveness */
@@ -965,8 +967,10 @@ body {
 
 @media (max-width: 768px) {
   .hero-content {
-    left: 50%;
+    left: 30%;
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
     text-align: center;
     width: 90%;
   }
@@ -1009,6 +1013,7 @@ body {
 
   .hero-section {
     height: clamp(550px, 50vh, 350px);
+    text-align: center;
   }
 }
 
