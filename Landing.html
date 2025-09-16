@@ -21,6 +21,8 @@
         <li class="nav-item"><a href="ProductView.html" class="nav-link">Products</a></li>
         <li class="nav-item"><a href="WorkWithUs.html" class="nav-link">Work With Us</a></li>
         <li class="nav-item"><a href="Policies.html" class="nav-link">Policies</a></li>
+        <span class="fab fa-app-store" style="font-size: 30px; cursor: pointer;"></span>
+       <span class="fa-brands fa-google-play" style="font-size: 30px; cursor: pointer;"></span>
       </ul>
 
       <div class="hamburger" id="hamburger">
@@ -40,12 +42,12 @@
             <div class="hero-slide"></div>
         </div>
         
-        <div class="hero-content">
-            <p class="hero-subtitle">Curated Fashion.</p>
-            <h1 class="hero-title">Global Trends.</h1>
-            <p class="hero-description">One Destination.</p>
-            <button class="explore-btn">Explore Product</button>
-        </div>
+       <div class="hero-content" id="heroContent">
+      <p class="hero-subtitle" id="heroSubtitle">Curated Fashion.</p>
+      <h1 class="hero-title" id="heroTitle">Global Trends.</h1>
+      <p class="hero-description" id="heroDescription">One Destination.</p>
+      <button class="explore-btn">Explore Product</button>
+    </div>
 
         <div class="hero-dots">
             <span class="dot active"></span>
@@ -57,10 +59,13 @@
 
     <!-- Free Delivery Banner -->
     <div class="delivery-banner">
-        <div class="delivery-text">
-            ★ Free deliveries on all products ★ Free deliveries on all products ★ Free deliveries on all products ★ Free deliveries on all products
-        </div>
-    </div>
+  <div class="delivery-track">
+    <div class="delivery-item">★ Free deliveries on all products</div>
+    <div class="delivery-item">★ Free deliveries on all products</div>
+    <div class="delivery-item">★ Free deliveries on all products</div>
+    <div class="delivery-item">★ Free deliveries on all products</div>
+  </div>
+</div>
 
     <!-- Trending Products -->
     <section class="products-section">
@@ -612,47 +617,51 @@
             updateButtonStates(section);
         }
 
-        // Hero dots animation
-        let currentDot = 0;
-        const dots = document.querySelectorAll('.dot');
+          const slidesText = [
+    { subtitle: "Curated Fashion.", title: "Global Trends.", description: "One Destination." },
+    { subtitle: "Exclusive Styles.", title: "New Season, New You.", description: "Be the first to wear it." },
+    { subtitle: "Luxury Picks.", title: "Your Style, Your Rules.", description: "Express yourself today." },
+    { subtitle: "Streetwear Edition.", title: "Comfort Meets Cool.", description: "Look good, feel good." },
+    { subtitle: "Timeless Classics.", title: "Minimal & Elegant.", description: "Stay classy, stay bold." }
+  ];
 
-        function updateDots() {
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentDot);
-            });
-            currentDot = (currentDot + 1) % dots.length;
-        }
+  let currentSlide = 0;
+  const dots = document.querySelectorAll('.dot');
+  const subtitle = document.getElementById('heroSubtitle');
+  const title = document.getElementById('heroTitle');
+  const description = document.getElementById('heroDescription');
+  const content = document.getElementById('heroContent');
 
-        // Update dots every 3 seconds to match the hero slider
-        setInterval(updateDots, 3000);
+  // ⬇️ ADJUSTED TIMING (NOW PERFECTLY MATCHES CSS)
+  let autoSlideInterval = setInterval(nextSlide, 4400);
 
-        // Handle window resize
-        function handleResize() {
-            const newSlidesToShow = getSlidesToShow();
-            
-            if (newSlidesToShow !== slidesToShow) {
-                slidesToShow = newSlidesToShow;
-                
-                // Reset sliders and update button states
-                trendingCurrentSlide = 0;
-                cheapCurrentSlide = 0;
-                
-                document.getElementById('trendingSlider').style.transform = 'translateX(0)';
-                document.getElementById('cheapSlider').style.transform = 'translateX(0)';
-                
-                updateButtonStates('trending');
-                updateButtonStates('cheap');
-            }
-        }
+  function updateHeroContent(index) {
+    content.style.opacity = 0;
+    setTimeout(() => {
+      subtitle.textContent = slidesText[index].subtitle;
+      title.textContent = slidesText[index].title;
+      description.textContent = slidesText[index].description;
+      content.style.opacity = 1;
+    }, 500);
 
-        // Initialize
-        window.addEventListener('resize', handleResize);
-        window.addEventListener('load', function() {
-            updateButtonStates('trending');
-            updateButtonStates('cheap');
-        });
-        
-        handleResize();
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    const nextIndex = (currentSlide + 1) % slidesText.length;
+    updateHeroContent(nextIndex);
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      clearInterval(autoSlideInterval);
+      updateHeroContent(index);
+      autoSlideInterval = setInterval(nextSlide, 4400); 
+      
+    
+    });
+  });
     </script>
 </body>
 </html>
