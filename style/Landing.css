@@ -991,7 +991,7 @@ body {
 @media (max-width: 576px) {
    
   .hero-content {
-    left: 55%;
+    left: 80%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
