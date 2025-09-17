@@ -22,7 +22,7 @@ body {
 
 
 .navbar {
-      position: relative;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -991,7 +991,7 @@ body {
 @media (max-width: 576px) {
    
   .hero-content {
-    left: 80%;
+    left: 100%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
