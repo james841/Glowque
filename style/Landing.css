@@ -991,13 +991,13 @@ body {
 @media (max-width: 576px) {
    
   .hero-content {
-    left: 60%;
+    left: 55%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 50%;
-    font-weight: 200;
+    width: 40%;
+    font-weight: 500px;
   }
 
 
