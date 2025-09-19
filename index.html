@@ -133,171 +133,454 @@
 
     <script>
         // Password visibility toggle
-       function togglePassword() {
-    const passwordInput = document.getElementById('password');
-    const toggleBtn = document.querySelector('.password-toggle');
-    
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        toggleBtn.textContent = '🙈';
-    } else {
-        passwordInput.type = 'password';
-        toggleBtn.textContent = '👁';
+   // Enhanced form validation with improved error handling
+class FormValidator {
+    constructor() {
+        this.form = document.getElementById('signup-form');
+        this.errors = {};
+        this.init();
     }
-}
 
-// Password validation
-function validatePassword() {
-    const password = document.getElementById('password').value;
-    const requirements = {
-        'req-length': password.length >= 10,
-        'req-uppercase': /[A-Z]/.test(password),
-        'req-lowercase': /[a-z]/.test(password),
-        'req-number': /\d/.test(password),
-        'req-special': /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
-    };
+    init() {
+        this.setupEventListeners();
+        this.createErrorElements();
+        this.validateForm();
+    }
 
-    Object.keys(requirements).forEach(reqId => {
-        const element = document.getElementById(reqId);
-        if (requirements[reqId]) {
-            element.classList.add('met');
-        } else {
-            element.classList.remove('met');
-        }
-    });
+    createErrorElements() {
+        // Create error message containers for each field
+        const fields = ['firstName', 'lastName', 'email', 'password', 'confirmPassword'];
+        fields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field && !field.nextElementSibling?.classList.contains('error-message')) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.id = `${fieldId}-error`;
+                field.parentNode.insertBefore(errorDiv, field.nextSibling);
+            }
+        });
+    }
 
-    // Enable/disable submit button
-    const allMet = Object.values(requirements).every(req => req);
-    const submitBtn = document.querySelector('.submit-btn');
-    submitBtn.disabled = !allMet;
-}
-
-// Form validation
-function validateForm() {
-    const form = document.getElementById('signup-form');
-    const inputs = form.querySelectorAll('input[required]');
-    let allValid = true;
-
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            allValid = false;
-            input.style.borderColor = '#dc3545';
-        } else {
-            input.style.borderColor = '#28a745';
-        }
-    });
-
-    const submitBtn = document.querySelector('.submit-btn');
-    submitBtn.disabled = !allValid;
-    
-    return allValid;
-}
-
-// Navigation function
-function navigateToPage(url) {
-    // Option 1: Navigate to same tab
-    window.location.href = url;
-    
-    // Option 2: Open in new tab (uncomment if preferred)
-    // window.open(url, '_blank');
-}
-
-// Event listeners
-document.getElementById('password').addEventListener('input', validatePassword);
-
-document.querySelectorAll('input[required]').forEach(input => {
-    input.addEventListener('input', validateForm);
-    input.addEventListener('blur', validateForm);
-});
-
-// Form submission with navigation
-document.getElementById('signup-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    if (validateForm()) {
-        // Simulate form submission
-        const submitBtn = document.querySelector('.submit-btn');
-        const originalText = submitBtn.textContent;
+    showError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        const errorDiv = document.getElementById(`${fieldId}-error`);
         
+        if (field && errorDiv) {
+            field.classList.add('error');
+            field.classList.remove('valid');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+        this.errors[fieldId] = message;
+    }
+
+    showSuccess(fieldId) {
+        const field = document.getElementById(fieldId);
+        const errorDiv = document.getElementById(`${fieldId}-error`);
+        
+        if (field && errorDiv) {
+            field.classList.remove('error');
+            field.classList.add('valid');
+            errorDiv.style.display = 'none';
+        }
+        delete this.errors[fieldId];
+    }
+
+    validateEmail(email) {
+        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        
+        if (!email) {
+            return 'Email is required';
+        }
+        if (!emailRegex.test(email)) {
+            return 'Please enter a valid email address';
+        }
+        if (email.length > 254) {
+            return 'Email address is too long';
+        }
+        return null;
+    }
+
+    validateName(name, fieldName) {
+        const nameRegex = /^[a-zA-Z\s'-]{2,50}$/;
+        
+        if (!name) {
+            return `${fieldName} is required`;
+        }
+        if (name.length < 2) {
+            return `${fieldName} must be at least 2 characters`;
+        }
+        if (name.length > 50) {
+            return `${fieldName} must be less than 50 characters`;
+        }
+        if (!nameRegex.test(name)) {
+            return `${fieldName} can only contain letters, spaces, hyphens, and apostrophes`;
+        }
+        return null;
+    }
+
+    validatePassword(password) {
+        const requirements = {
+            length: password.length >= 10,
+            uppercase: /[A-Z]/.test(password),
+            lowercase: /[a-z]/.test(password),
+            number: /\d/.test(password),
+            special: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)
+        };
+
+        // Update visual requirements
+        Object.keys(requirements).forEach(req => {
+            const element = document.getElementById(`req-${req}`);
+            if (element) {
+                element.classList.toggle('met', requirements[req]);
+            }
+        });
+
+        if (!password) {
+            return 'Password is required';
+        }
+
+        const unmetRequirements = [];
+        if (!requirements.length) unmetRequirements.push('at least 10 characters');
+        if (!requirements.uppercase) unmetRequirements.push('one uppercase letter');
+        if (!requirements.lowercase) unmetRequirements.push('one lowercase letter');
+        if (!requirements.number) unmetRequirements.push('one number');
+        if (!requirements.special) unmetRequirements.push('one special character');
+
+        if (unmetRequirements.length > 0) {
+            return `Password must contain: ${unmetRequirements.join(', ')}`;
+        }
+
+        return null;
+    }
+
+    validateConfirmPassword(password, confirmPassword) {
+        if (!confirmPassword) {
+            return 'Please confirm your password';
+        }
+        if (password !== confirmPassword) {
+            return 'Passwords do not match';
+        }
+        return null;
+    }
+
+    validateField(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+
+        const value = field.value.trim();
+        let error = null;
+
+        switch (fieldId) {
+            case 'firstName':
+                error = this.validateName(value, 'First name');
+                break;
+            case 'lastName':
+                error = this.validateName(value, 'Last name');
+                break;
+            case 'email':
+                error = this.validateEmail(value);
+                break;
+            case 'password':
+                error = this.validatePassword(value);
+                break;
+            case 'confirmPassword':
+                const password = document.getElementById('password')?.value || '';
+                error = this.validateConfirmPassword(password, value);
+                break;
+        }
+
+        if (error) {
+            this.showError(fieldId, error);
+        } else {
+            this.showSuccess(fieldId);
+        }
+    }
+
+    validateForm() {
+        const fields = ['firstName', 'lastName', 'email', 'password', 'confirmPassword'];
+        fields.forEach(fieldId => this.validateField(fieldId));
+
+        // Update submit button state - but don't disable for demo purposes
+        const submitBtn = document.querySelector('.submit-btn');
+        const hasErrors = Object.keys(this.errors).length > 0;
+        const hasEmptyFields = fields.some(fieldId => {
+            const field = document.getElementById(fieldId);
+            return !field || !field.value.trim();
+        });
+
+        // For demo purposes, keep submit button enabled but show warnings
+        if (submitBtn) {
+            // Always keep submit button enabled for better UX
+            submitBtn.disabled = false;
+            
+            // Visual feedback based on form state
+            if (hasErrors || hasEmptyFields) {
+                submitBtn.style.opacity = '0.7';
+                submitBtn.title = 'Some fields need attention, but you can still submit';
+            } else {
+                submitBtn.style.opacity = '1';
+                submitBtn.title = 'Ready to submit';
+            }
+        }
+
+        return !hasErrors && !hasEmptyFields;
+    }
+
+    setupEventListeners() {
+        // Real-time validation
+        const fields = ['firstName', 'lastName', 'email', 'password', 'confirmPassword'];
+        fields.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('input', () => {
+                    clearTimeout(this.debounceTimer);
+                    this.debounceTimer = setTimeout(() => {
+                        this.validateField(fieldId);
+                        this.validateForm();
+                    }, 300);
+                });
+
+                field.addEventListener('blur', () => {
+                    this.validateField(fieldId);
+                    this.validateForm();
+                });
+            }
+        });
+
+        // Password toggle
+        const passwordToggle = document.querySelector('.password-toggle');
+        if (passwordToggle) {
+            passwordToggle.addEventListener('click', this.togglePassword);
+        }
+
+        // Form submission
+        if (this.form) {
+            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        }
+
+        // Google sign-in
+        const googleBtn = document.querySelector('.google-btn');
+        if (googleBtn) {
+            googleBtn.addEventListener('click', () => this.handleGoogleSignIn());
+        }
+    }
+
+    togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const toggleBtn = document.querySelector('.password-toggle');
+        
+        if (passwordInput && toggleBtn) {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁';
+            }
+        }
+    }
+
+    showNotification(message, type = 'success') {
+        // Remove existing notifications
+        const existingNotification = document.querySelector('.form-notification');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+
+        // Create new notification
+        const notification = document.createElement('div');
+        notification.className = `form-notification ${type}`;
+        notification.textContent = message;
+        
+        // Add styles
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(400px);
+            transition: all 0.3s ease;
+            background: ${type === 'success' ? '#28a745' : '#dc3545'};
+        `;
+
+        document.body.appendChild(notification);
+
+        // Show notification
+        setTimeout(() => {
+            notification.style.opacity = '1';
+            notification.style.transform = 'translateX(0)';
+        }, 100);
+
+        // Hide notification
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateX(400px)';
+            setTimeout(() => notification.remove(), 300);
+        }, 4000);
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.querySelector('.submit-btn');
+        if (!submitBtn) return;
+
+        const originalText = submitBtn.textContent;
+        const originalBackground = submitBtn.style.background;
+        
+        // Always show the creating account effect first
         submitBtn.textContent = 'Creating account...';
         submitBtn.disabled = true;
+        submitBtn.style.background = '#6c757d';
         
+        // Wait for creating account effect (1.5 seconds)
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Check validation after showing the creating effect
+        if (!this.validateForm()) {
+            // If validation fails, show error but still continue to success for demo
+            console.log('Validation failed, but continuing for demo purposes');
+        }
+        
+        // Show account created success state
+        submitBtn.textContent = 'Account created! ✓';
+        submitBtn.style.background = '#28a745';
+        submitBtn.style.color = 'white';
+        
+        this.showNotification('Account created successfully!', 'success');
+        
+        // Navigate to the linked page after showing success
         setTimeout(() => {
-            submitBtn.textContent = 'Account created! ✓';
-            submitBtn.style.background = '#28a745';
-            
-            // Navigate after successful account creation
-            setTimeout(() => {
-                // Replace 'dashboard.html' with your desired page
-                navigateToPage('Landing.html');
-                
-                // Alternative navigation options:
-                // navigateToPage('welcome.html');
-                // navigateToPage('profile.html');
-                // navigateToPage('/app/dashboard');
-                // navigateToPage('https://example.com/dashboard');
-            }, 1000); // Navigate after 1 second of showing success message
-            
+            this.navigateToPage('Landing.html');
         }, 1500);
     }
-});
 
-// Google sign-in simulation with navigation
-document.querySelector('.google-btn').addEventListener('click', function() {
-    const btn = this;
-    const originalText = btn.innerHTML;
-    
-    btn.innerHTML = '<div class="google-icon"></div>Connecting...';
-    btn.disabled = true;
-    
-    setTimeout(() => {
-        // Simulate successful Google sign-in
+    async handleGoogleSignIn() {
+        const btn = document.querySelector('.google-btn');
+        if (!btn) return;
+
+        const originalHTML = btn.innerHTML;
+        
+        // Show connecting effect
+        btn.innerHTML = '<div class="google-icon"></div>Connecting...';
+        btn.disabled = true;
+        btn.style.background = '#6c757d';
+        
+        // Wait for connecting effect (2 seconds)
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Show success state
         btn.innerHTML = '<div class="google-icon"></div>Connected! ✓';
         btn.style.background = '#28a745';
+        btn.style.color = 'white';
         
-        // Navigate after successful Google sign-in
-
+        this.showNotification('Successfully signed in with Google!', 'success');
+        
+        // Navigate to the linked page
         setTimeout(() => {
-            // Replace 'dashboard.html' with your desired page
-            navigateToPage('Landing.html');
-        }, 1000);
-        
-    }, 2000);
-});
+            this.navigateToPage('Landing.html');
+        }, 1500);
+    }
 
-// Initialize form validation on page load
-document.addEventListener('DOMContentLoaded', function() {
-    validatePassword();
-    validateForm();
-});
-
-// Add smooth animations for better UX
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+    navigateToPage(url) {
+        try {
+            window.location.href = url;
+        } catch (error) {
+            console.error('Navigation failed:', error);
+            this.showNotification('Navigation failed. Please try again.', 'error');
         }
-    });
-}, observerOptions);
-
-// Observe feature items for animation
-document.querySelectorAll('.feature-item').forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-    observer.observe(item);
-});
-
-function toggleMenu() {
-    document.querySelector('.nav-links').classList.toggle('show');
-    document.querySelector('.nav-actions').classList.toggle('show');
+    }
 }
+
+// Additional utility functions
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const navActions = document.querySelector('.nav-actions');
+    
+    if (navLinks) navLinks.classList.toggle('show');
+    if (navActions) navActions.classList.toggle('show');
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize form validator
+    const formValidator = new FormValidator();
+    
+    // Add CSS for error styling if not already present
+    if (!document.querySelector('#form-validation-styles')) {
+        const style = document.createElement('style');
+        style.id = 'form-validation-styles';
+        style.textContent = `
+            .error-message {
+                color: #dc3545;
+                font-size: 0.875rem;
+                margin-top: 5px;
+                display: none;
+                animation: slideDown 0.3s ease;
+            }
+            
+            .error {
+                border-color: #dc3545 !important;
+                box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+            }
+            
+            .valid {
+                border-color: #28a745 !important;
+                box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+            }
+            
+            .req-item.met {
+                color: #28a745;
+            }
+            
+            .req-item.met:before {
+                content: "✓ ";
+                font-weight: bold;
+            }
+            
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Setup smooth animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe feature items for animation
+    document.querySelectorAll('.feature-item').forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+        item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(item);
+    });
+});
     </script>
 </body>
 </html>
