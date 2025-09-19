@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blowque</title>
+    <title>Glowque</title>
     <link rel="stylesheet" href="style/ProductView.css" />
   </head>
   <body>
     <!-- Header -->
     <div class="header">Save 10% off - Download App with code - FREE10% →</div>
 
-    
     <nav class="navbar">
       <div class="logo">Glowque.</div>
       <div class="nav-menu">
@@ -18,6 +17,7 @@
         <a href="#" class="nav-item">About us</a>
         <a href="#" class="nav-item">Work with us</a>
         <a href="#" class="nav-item">Policies</a>
+      </div>
     </nav>
 
     <div class="container">
@@ -50,13 +50,12 @@
                 <div class="category-title">Casual<br />Fits.</div>
               </div>
             </div>
-             <div class="category-card">
+            <div class="category-card">
               <a href="Casual.html"><div class="categories-image"><img src="./images/sleek13.png" alt="Casual Fits" cover/></div></a>
               <div class="category-overlay">
                 <div class="category-title">Casual<br />Fits.</div>
               </div>
             </div>
-            
             <div class="category-card">
               <div class="categories-image"><img src="./images/sleek13.png" alt="Work Fits" cover/></div>
               <div class="category-overlay">
@@ -94,7 +93,7 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-content">
-          <div class="logo">Blowque.</div>
+          <div class="logo">Glowque.</div>
           <div class="social-icons">
             <a href="#" class="social-icon">📱</a>
             <a href="#" class="social-icon">👤</a>
@@ -130,6 +129,15 @@
       function updateCategoryPosition() {
         const offset = -categoryCurrentIndex * 320;
         categoryWrapper.style.transform = `translateX(${offset}px)`;
+      }
+
+      function viewProduct(name, price, image) {
+        const selectedProduct = {
+          name: name,
+          price: price,
+          image: image
+        };
+        sessionStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
       }
 
       const allProducts = [
@@ -294,7 +302,6 @@
           currentPrice: "$12",
           originalPrice: "$18",
           image: "./images/sleek17.png",
-          
         },
         {
           title: "🎽 Tank Top 28",
@@ -312,381 +319,314 @@
           title: "🎽 Tank Top 30",
           currentPrice: "$12",
           originalPrice: "$18",
-          image:"./images/sleek17.png",
+          image: "./images/sleek17.png",
         },
-
-        // --- PAGE 2 PRODUCTS ---
         {
           title: "🔥 Limited Edition Sneakers",
           currentPrice: "$75.00",
           originalPrice: "$100.00",
-          icon: "👟",
+          image: "./images/sleek15.png",
         },
         {
           title: "🧥 Winter Jacket",
           currentPrice: "$120.00",
           originalPrice: "$150.00",
-          icon: "🧥",
+          image: "./images/sleek16.png",
         },
         {
           title: "🎒 Leather Backpack",
           currentPrice: "$60.00",
           originalPrice: "$85.00",
-          icon: "🎒",
+          image: "./images/sleek17.png",
         },
         {
           title: "🥿 Comfortable Flats",
           currentPrice: "$35.00",
           originalPrice: "$50.00",
-          icon: "🥿",
+          image: "./images/sleek15.png",
         },
         {
           title: "🧢 Stylish Cap",
           currentPrice: "$15.00",
           originalPrice: "$20.00",
-          icon: "🧢",
+          image: "./images/sleek16.png",
         },
         {
           title: "👟 Sneakers 36",
           currentPrice: "$70.00",
           originalPrice: "$95.00",
-          icon: "👟",
+          image: "./images/sleek17.png",
         },
         {
           title: "👟 Sneakers 37",
           currentPrice: "$70.00",
           originalPrice: "$95.00",
-          icon: "👟",
+          image: "./images/sleek15.png",
         },
         {
           title: "👟 Sneakers 38",
           currentPrice: "$70.00",
           originalPrice: "$95.00",
-          icon: "👟",
+          image: "./images/sleek16.png",
         },
         {
           title: "👟 Sneakers 39",
           currentPrice: "$70.00",
           originalPrice: "$95.00",
-          icon: "👟",
+          image: "./images/sleek17.png",
         },
         {
           title: "👟 Sneakers 40",
           currentPrice: "$70.00",
           originalPrice: "$95.00",
-          icon: "👟",
+          image: "./images/sleek15.png",
         },
-        // ... add 20 more products for page 2
-
-        // --- PAGE 3 PRODUCTS ---
         {
           title: "🎧 Wireless Headphones",
           currentPrice: "$120.00",
           originalPrice: "$180.00",
-          icon: "🎧",
+          image: "./images/sleek16.png",
         },
         {
           title: "⌚ Smart Watch",
           currentPrice: "$199.00",
           originalPrice: "$250.00",
-          icon: "⌚",
+          image: "./images/sleek17.png",
         },
         {
           title: "🎮 Gaming Controller",
           currentPrice: "$60.00",
           originalPrice: "$85.00",
-          icon: "🎮",
+          image: "./images/sleek15.png",
         },
         {
           title: "📱 Smartphone Case",
           currentPrice: "$20.00",
           originalPrice: "$30.00",
-          icon: "📱",
+          image: "./images/sleek16.png",
         },
         {
           title: "💻 Laptop Sleeve",
           currentPrice: "$35.00",
           originalPrice: "$50.00",
-          icon: "💻",
+          image: "./images/sleek17.png",
         },
         {
           title: "🎧 Wireless Headphones",
           currentPrice: "$120.00",
           originalPrice: "$180.00",
-          icon: "🎧",
+          image: "./images/sleek15.png",
         },
         {
           title: "⌚ Smart Watch",
           currentPrice: "$199.00",
           originalPrice: "$250.00",
-          icon: "⌚",
+          image: "./images/sleek16.png",
         },
         {
           title: "🎮 Gaming Controller",
           currentPrice: "$60.00",
           originalPrice: "$85.00",
-          icon: "🎮",
+          image: "./images/sleek17.png",
         },
         {
           title: "📱 Smartphone Case",
           currentPrice: "$20.00",
           originalPrice: "$30.00",
-          icon: "📱",
+          image: "./images/sleek15.png",
         },
         {
           title: "💻 Laptop Sleeve",
           currentPrice: "$35.00",
           originalPrice: "$50.00",
-          icon: "💻",
+          image: "./images/sleek16.png",
         },
         {
           title: "🎧 Wireless Headphones",
           currentPrice: "$120.00",
           originalPrice: "$180.00",
-          icon: "🎧",
+          image: "./images/sleek17.png",
         },
         {
           title: "⌚ Smart Watch",
           currentPrice: "$199.00",
           originalPrice: "$250.00",
-          icon: "⌚",
+          image: "./images/sleek15.png",
         },
         {
           title: "🎮 Gaming Controller",
           currentPrice: "$60.00",
           originalPrice: "$85.00",
-          icon: "🎮",
+          image: "./images/sleek16.png",
         },
         {
           title: "📱 Smartphone Case",
           currentPrice: "$20.00",
           originalPrice: "$30.00",
-          icon: "📱",
+          image: "./images/sleek17.png",
         },
         {
           title: "💻 Laptop Sleeve",
           currentPrice: "$35.00",
           originalPrice: "$50.00",
-          icon: "💻",
+          image: "./images/sleek15.png",
         },
         {
           title: "🎧 Wireless Headphones",
           currentPrice: "$120.00",
           originalPrice: "$180.00",
-          icon: "🎧",
+          image: "./images/sleek16.png",
         },
         {
           title: "⌚ Smart Watch",
           currentPrice: "$199.00",
           originalPrice: "$250.00",
-          icon: "⌚",
+          image: "./images/sleek17.png",
         },
         {
           title: "🎮 Gaming Controller",
           currentPrice: "$60.00",
           originalPrice: "$85.00",
-          icon: "🎮",
+          image: "./images/sleek15.png",
         },
         {
           title: "📱 Smartphone Case",
           currentPrice: "$20.00",
           originalPrice: "$30.00",
-          icon: "📱",
+          image: "./images/sleek16.png",
         },
         {
           title: "💻 Laptop Sleeve",
           currentPrice: "$35.00",
           originalPrice: "$50.00",
-          icon: "💻",
+          image: "./images/sleek17.png",
         },
         {
           title: "🎧 Wireless Headphones",
           currentPrice: "$120.00",
           originalPrice: "$180.00",
-          icon: "🎧",
+          image: "./images/sleek15.png",
         },
         {
           title: "⌚ Smart Watch",
           currentPrice: "$199.00",
           originalPrice: "$250.00",
-          icon: "⌚",
+          image: "./images/sleek16.png",
         },
         {
           title: "🎮 Gaming Controller",
           currentPrice: "$60.00",
           originalPrice: "$85.00",
-          icon: "🎮",
+          image: "./images/sleek17.png",
         },
         {
           title: "📱 Smartphone Case",
           currentPrice: "$20.00",
           originalPrice: "$30.00",
-          icon: "📱",
+          image: "./images/sleek15.png",
         },
         {
           title: "💻 Laptop Sleeve",
           currentPrice: "$35.00",
           originalPrice: "$50.00",
-          icon: "💻",
+          image: "./images/sleek16.png",
         },
         {
           title: "🎧 Wireless Headphones",
           currentPrice: "$120.00",
           originalPrice: "$180.00",
-          icon: "🎧",
+          image: "./images/sleek17.png",
         },
         {
           title: "⌚ Smart Watch",
           currentPrice: "$199.00",
           originalPrice: "$250.00",
-          icon: "⌚",
+          image: "./images/sleek15.png",
         },
         {
           title: "🎮 Gaming Controller",
           currentPrice: "$60.00",
           originalPrice: "$85.00",
-          icon: "🎮",
+          image: "./images/sleek16.png",
         },
         {
           title: "📱 Smartphone Case",
           currentPrice: "$20.00",
           originalPrice: "$30.00",
-          icon: "📱",
+          image: "./images/sleek17.png",
         },
         {
           title: "💻 Laptop Sleeve",
           currentPrice: "$35.00",
           originalPrice: "$50.00",
-          icon: "💻",
+          image: "./images/sleek15.png",
         },
         {
           title: "🎧 Wireless Headphones",
           currentPrice: "$120.00",
           originalPrice: "$180.00",
-          icon: "🎧",
-        },
-        {
-          title: "⌚ Smart Watch",
-          currentPrice: "$199.00",
-          originalPrice: "$250.00",
-          icon: "⌚",
+          image: "./images/sleek16.png",
         },
         {
           title: "🎮 Gaming Controller",
           currentPrice: "$60.00",
           originalPrice: "$85.00",
-          icon: "🎮",
+          image: "./images/sleek17.png",
         },
         {
           title: "📱 Smartphone Case",
           currentPrice: "$20.00",
           originalPrice: "$30.00",
-          icon: "📱",
+          image: "./images/sleek15.png",
         },
         {
           title: "💻 Laptop Sleeve",
           currentPrice: "$35.00",
           originalPrice: "$50.00",
-          icon: "💻",
+          image: "./images/sleek16.png",
         },
         {
           title: "🎧 Wireless Headphones",
           currentPrice: "$120.00",
           originalPrice: "$180.00",
-          icon: "🎧",
-        },
-        {
-          title: "⌚ Smart Watch",
-          currentPrice: "$199.00",
-          originalPrice: "$250.00",
-          icon: "⌚",
+          image: "./images/sleek17.png",
         },
         {
           title: "🎮 Gaming Controller",
           currentPrice: "$60.00",
           originalPrice: "$85.00",
-          icon: "🎮",
+          image: "./images/sleek15.png",
         },
         {
           title: "📱 Smartphone Case",
           currentPrice: "$20.00",
           originalPrice: "$30.00",
-          icon: "📱",
+          image: "./images/sleek16.png",
         },
         {
           title: "💻 Laptop Sleeve",
           currentPrice: "$35.00",
           originalPrice: "$50.00",
-          icon: "💻",
+          image: "./images/sleek17.png",
         },
         {
           title: "🎧 Wireless Headphones",
           currentPrice: "$120.00",
           originalPrice: "$180.00",
-          icon: "🎧",
-        },
-        {
-          title: "🎮 Gaming Controller",
-          currentPrice: "$60.00",
-          originalPrice: "$85.00",
-          icon: "🎮",
-        },
-        {
-          title: "📱 Smartphone Case",
-          currentPrice: "$20.00",
-          originalPrice: "$30.00",
-          icon: "📱",
+          image: "./images/sleek15.png",
         },
         {
           title: "💻 Laptop Sleeve",
           currentPrice: "$35.00",
           originalPrice: "$50.00",
-          icon: "💻",
+          image: "./images/sleek16.png",
         },
         {
           title: "🎧 Wireless Headphones",
           currentPrice: "$120.00",
           originalPrice: "$180.00",
-          icon: "🎧",
-        },
-        {
-          title: "🎮 Gaming Controller",
-          currentPrice: "$60.00",
-          originalPrice: "$85.00",
-          icon: "🎮",
-        },
-        {
-          title: "📱 Smartphone Case",
-          currentPrice: "$20.00",
-          originalPrice: "$30.00",
-          icon: "📱",
-        },
-        {
-          title: "💻 Laptop Sleeve",
-          currentPrice: "$35.00",
-          originalPrice: "$50.00",
-          icon: "💻",
-        },
-        {
-          title: "🎧 Wireless Headphones",
-          currentPrice: "$120.00",
-          originalPrice: "$180.00",
-          icon: "🎧",
-        },
-        {
-          title: "💻 Laptop Sleeve",
-          currentPrice: "$35.00",
-          originalPrice: "$50.00",
-          icon: "💻",
-        },
-        {
-          title: "🎧 Wireless Headphones",
-          currentPrice: "$120.00",
-          originalPrice: "$180.00",
-          icon: "🎧",
-        },
-
-        // ... add 25 more products for page 3
+          image: "./images/sleek17.png",
+        }
       ].map((p, i) => ({ ...p, id: i + 1 }));
 
       let currentPage = 1;
@@ -705,17 +645,18 @@
           const productCard = document.createElement("div");
           productCard.className = "product-card";
           productCard.innerHTML = `
-        <div class="product-image">
-     <img src="${product.image}" alt="${product.title}">
-     </div>
-        <div class="product-info">
-          <div class="product-title">${product.title}</div>
-          <div class="product-price">
-            <span class="current-price">${product.currentPrice}</span>
-            <span class="original-price">${product.originalPrice}</span>
-          </div>
-        </div>
-      `;
+            <div class="product-image">
+              <img src="${product.image}" alt="${product.title}">
+            </div>
+            <div class="product-info">
+              <div class="product-title">${product.title}</div>
+              <div class="product-price">
+                <span class="current-price">${product.currentPrice}</span>
+                <span class="original-price">${product.originalPrice}</span>
+              </div>
+              <a href="Addcart.html" class="product-button" onclick="viewProduct('${product.title}', ${parseFloat(product.currentPrice.replace('$', ''))}, '${product.image}')">Buy Now</a>
+            </div>
+          `;
           productsGrid.appendChild(productCard);
         });
       }
